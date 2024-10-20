@@ -1,0 +1,41 @@
+package Baktracking;
+
+// program to find power set of a string
+
+import java.util.ArrayList;
+import java.util.List;
+
+public final class Test {
+
+    private Test() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
+    public static List<String> subsetRecursion(String str) {
+        return doRecursion("", str);
+    }
+
+    private static List<String> doRecursion(String p, String up) {
+        if (up.isEmpty()) {
+            List<String> list = new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+
+        // Taking the character
+        char ch = up.charAt(0);
+        // Adding the character in the recursion
+        List<String> left = doRecursion(p + ch, up.substring(1));
+        // Not adding the character in the recursion
+        List<String> right = doRecursion(p, up.substring(1));
+
+        left.addAll(right);
+
+        return left;
+    }
+
+    public static void main(String[] args) {
+        List<String> list = Test.subsetRecursion("abc");
+        System.out.println(list);
+    }
+}
