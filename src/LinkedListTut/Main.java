@@ -18,8 +18,8 @@ public class Main {
         list.addAtIndex(70,5);
         list.addAtIndex(80,6);
         list.addAtIndex(90,7);
-        list.get(7).next=list.get(6);
 //        list.display();
+        list.reorderList(list.head);
 
         System.out.println(list.firstCycleNode(list.head).data);
         System.out.println(list.findFirstCyclenode(list.head).data);

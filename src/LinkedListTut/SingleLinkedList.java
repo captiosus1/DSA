@@ -210,6 +210,61 @@ public class SingleLinkedList {
         return slow;
     }
 
+    /**
+     * Definition for singly-linked list.
+     * public class Node {
+     *     int val;
+     *     Node next;
+     *     Node() {}
+     *     Node(int val) { this.val = val; }
+     *     Node(int val, Node next) { this.val = val; this.next = next; }
+     * }
+     */
+
+        public void reorderList(Node head) {
+            if(head==null || head.next ==null)
+                return;
+
+            Node mid = middleNode(head);
+            Node reversehead = reverseList(mid);
+            Node curr = head;
+            Node middle = reversehead;
+            Node next=curr.next;
+            Node prevmid = middle;
+            while(middle!=null){
+                next = curr.next;
+                curr.next = middle;
+                middle.next = next;
+                prevmid=middle;
+                middle=prevmid.next;
+            }
+        }
+
+        public Node middleNode(Node head) {
+            Node slow = head;
+            Node fast = head;
+            while(fast!=null&&fast.next!=null){
+                slow=slow.next;
+                fast=fast.next.next;
+            }
+
+            return slow;
+        }
+
+        public Node reverseList(Node head) {
+            return reverse(null, head);
+        }
+
+        public Node reverse(Node prev, Node curr) {
+            if (curr == null) {
+                return prev;
+            }
+
+            Node next = curr.next;
+            curr.next = prev;
+            return reverse(curr, next);
+        }
+
     public static class Node {
         int data;
         Node next;
